@@ -7,6 +7,7 @@ import { tokenize, buildSymbolTable } from '@/lib/tokenizer';
 import { HighlightedCode } from '@/components/custom/HighlightedCode';
 import { TokenTable } from '@/components/custom/TokenTable';
 import { SymbolTableDisplay } from '@/components/custom/SymbolTableDisplay';
+import { ColorMeaningLegend } from '@/components/custom/ColorMeaningLegend';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import {
@@ -75,6 +76,15 @@ if __name__ == "__main__":
   print(f"User: {user}, Global: {GLOBAL_VAR}, Instance: {mc.get_value()}")
 `;
 
+const legendItems = [
+  { label: 'Keyword', className: 'text-primary font-semibold', sampleText: 'keyword' },
+  { label: 'Identifier / Default', className: 'text-foreground', sampleText: 'identifier' },
+  { label: 'String', className: 'text-green-600 dark:text-green-400', sampleText: '"string"' },
+  { label: 'Comment', className: 'text-muted-foreground italic', sampleText: '// comment' },
+  { label: 'Operator', className: 'text-accent-foreground', sampleText: '+' },
+  { label: 'Number', className: 'text-purple-600 dark:text-purple-400', sampleText: '123' },
+  { label: 'Unknown', className: 'text-destructive', sampleText: '?' },
+];
 
 export default function HomePage() {
   const [code, setCode] = useState<string>(initialCodeC);
@@ -157,6 +167,12 @@ export default function HomePage() {
                 <div className="max-h-96 overflow-y-auto">
                   <SymbolTableDisplay symbolTable={symbolTable} />
                 </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="color-legend">
+              <AccordionTrigger>Syntax Highlighting Legend</AccordionTrigger>
+              <AccordionContent>
+                <ColorMeaningLegend items={legendItems} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
