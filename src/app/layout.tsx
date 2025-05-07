@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Inter as FontSans } from 'next/font/google'; // Using Inter as Geist is not standard
 import { IBM_Plex_Mono as FontMono } from 'next/font/google'; // Using IBM Plex Mono as Geist Mono might not be readily available or set up
@@ -17,8 +18,8 @@ const fontMono = FontMono({
 });
 
 export const metadata: Metadata = {
-  title: 'Code Highlighter',
-  description: 'Real-time syntax highlighting for code.',
+  title: 'Code Analyzer',
+  description: 'Real-time syntax highlighting, tokenization, and symbol table generation.',
 };
 
 export default function RootLayout({
@@ -41,3 +42,4 @@ export default function RootLayout({
     </html>
   );
 }
+

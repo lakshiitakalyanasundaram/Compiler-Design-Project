@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { Token } from '@/lib/tokenizer';
@@ -12,29 +13,29 @@ export function HighlightedCode({ tokens }: HighlightedCodeProps) {
   const getTokenClass = (tokenType: TokenType): string => {
     switch (tokenType) {
       case TokenType.KEYWORD:
-        return 'text-blue-600 dark:text-blue-400 font-semibold';
+        return 'text-primary font-semibold'; // Use primary color from theme
       case TokenType.IDENTIFIER:
-        return 'text-neutral-800 dark:text-neutral-200';
+        return 'text-foreground'; // Use foreground color from theme
       case TokenType.STRING:
-        return 'text-green-600 dark:text-green-400';
+        return 'text-green-600 dark:text-green-400'; // Keeping specific color for strings for now
       case TokenType.COMMENT:
-        return 'text-gray-500 dark:text-gray-400 italic';
+        return 'text-muted-foreground italic'; // Use muted foreground from theme
       case TokenType.OPERATOR:
-        return 'text-orange-600 dark:text-orange-400';
+        return 'text-accent-foreground'; // Use accent foreground for operators
       case TokenType.NUMBER:
-        return 'text-purple-600 dark:text-purple-400';
+        return 'text-purple-600 dark:text-purple-400'; // Keeping specific color for numbers
       case TokenType.WHITESPACE:
         return ''; // Whitespace will be rendered as is
       case TokenType.UNKNOWN:
-        return 'text-red-500 dark:text-red-400';
+        return 'text-destructive'; // Use destructive color from theme
       default:
-        return 'text-neutral-800 dark:text-neutral-200';
+        return 'text-foreground';
     }
   };
 
   return (
     <pre
-      className="p-4 bg-white dark:bg-neutral-800 rounded-md shadow-sm overflow-auto font-mono text-sm border border-input"
+      className="p-4 bg-card rounded-md shadow-sm overflow-auto font-mono text-sm border border-input"
       aria-live="polite"
     >
       {tokens.map((token, index) => (
@@ -45,3 +46,4 @@ export function HighlightedCode({ tokens }: HighlightedCodeProps) {
     </pre>
   );
 }
+
