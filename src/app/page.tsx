@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -110,19 +109,19 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-background">
-      <Card className="w-full max-w-4xl shadow-2xl">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-950">
+      <Card className="w-full max-w-4xl shadow-2xl bg-gray-900 border-gray-700">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-primary">Code Analyzer</CardTitle>
-          <CardDescription className="text-muted-foreground">
+          <CardTitle className="text-3xl font-bold text-blue-400">Code Analyzer</CardTitle>
+          <CardDescription className="text-gray-400">
             Real-time syntax highlighting, tokenization, and symbol table generation.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="language-select" className="text-sm font-medium">Select Language:</Label>
+            <Label htmlFor="language-select" className="text-sm font-medium text-gray-200">Select Language:</Label>
             <Select value={language} onValueChange={handleLanguageChange}>
-              <SelectTrigger id="language-select" className="w-full md:w-1/3">
+              <SelectTrigger id="language-select" className="w-full md:w-1/3 bg-gray-800 border-gray-700 text-gray-200">
                 <SelectValue placeholder="Select language" />
               </SelectTrigger>
               <SelectContent>
@@ -134,18 +133,18 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="code-input" className="text-sm font-medium">Enter your code:</Label>
+              <Label htmlFor="code-input" className="text-sm font-medium text-gray-200">Enter your code:</Label>
               <Textarea
                 id="code-input"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="Enter your code here..."
-                className="w-full h-96 p-4 font-mono text-sm bg-card border-input rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                className="w-full h-96 p-4 font-mono text-sm bg-gray-800 border-gray-700 text-gray-200 rounded-md shadow-sm focus:ring-blue-400 focus:border-blue-400"
                 aria-label="Code input area"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-sm font-medium">Highlighted Output:</Label>
+              <Label className="text-sm font-medium text-gray-200">Highlighted Output:</Label>
               <div className="h-96 overflow-y-auto">
                 <HighlightedCode tokens={tokens} />
               </div>
@@ -153,24 +152,24 @@ export default function HomePage() {
           </div>
 
           <Accordion type="multiple" className="w-full">
-            <AccordionItem value="token-table">
-              <AccordionTrigger>Token Table</AccordionTrigger>
+            <AccordionItem value="token-table" className="border-gray-700">
+              <AccordionTrigger className="text-gray-200">Token Table</AccordionTrigger>
               <AccordionContent>
                 <div className="max-h-96 overflow-y-auto">
                   <TokenTable tokens={tokens} />
                 </div>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="symbol-table">
-              <AccordionTrigger>Symbol Table</AccordionTrigger>
+            <AccordionItem value="symbol-table" className="border-gray-700">
+              <AccordionTrigger className="text-gray-200">Symbol Table</AccordionTrigger>
               <AccordionContent>
                 <div className="max-h-96 overflow-y-auto">
                   <SymbolTableDisplay symbolTable={symbolTable} />
                 </div>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="color-legend">
-              <AccordionTrigger>Syntax Highlighting Legend</AccordionTrigger>
+            <AccordionItem value="color-legend" className="border-gray-700">
+              <AccordionTrigger className="text-gray-200">Syntax Highlighting Legend</AccordionTrigger>
               <AccordionContent>
                 <ColorMeaningLegend items={legendItems} />
               </AccordionContent>

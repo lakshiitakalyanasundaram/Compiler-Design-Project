@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { Token } from '@/lib/tokenizer';
@@ -30,7 +29,7 @@ export function TokenTable({ tokens }: TokenTableProps) {
       case TokenType.IDENTIFIER:
         return "secondary";
       case TokenType.STRING:
-        return "outline"; // Using outline for strings for better visual distinction
+        return "outline";
       case TokenType.COMMENT:
         return "secondary";
       case TokenType.OPERATOR:
@@ -46,25 +45,48 @@ export function TokenTable({ tokens }: TokenTableProps) {
     }
   };
 
+  const getTokenTypeBadgeClass = (tokenType: TokenType): string => {
+    switch (tokenType) {
+      case TokenType.KEYWORD:
+        return 'bg-black text-blue-400 border-blue-400';
+      case TokenType.IDENTIFIER:
+        return 'bg-black text-pink-400 border-pink-400';
+      case TokenType.STRING:
+        return 'bg-black text-emerald-400 border-emerald-400';
+      case TokenType.COMMENT:
+        return 'bg-black text-yellow-400 border-yellow-400';
+      case TokenType.OPERATOR:
+        return 'bg-black text-orange-400 border-orange-400';
+      case TokenType.NUMBER:
+        return 'bg-black text-purple-400 border-purple-400';
+      case TokenType.WHITESPACE:
+        return 'bg-black text-gray-400 border-gray-400';
+      case TokenType.UNKNOWN:
+        return 'bg-black text-red-400 border-red-400';
+      default:
+        return 'bg-black text-gray-200 border-gray-200';
+    }
+  };
+
   return (
-    <ScrollArea className="rounded-md border bg-card shadow-sm">
+    <ScrollArea className="rounded-md border border-gray-700 bg-gray-900 shadow-sm">
       <Table className="w-full">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-[150px]">Token Type</TableHead>
-            <TableHead>Value</TableHead>
+          <TableRow className="border-gray-700">
+            <TableHead className="w-[150px] text-gray-200">Token Type</TableHead>
+            <TableHead className="text-gray-200">Value</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {tokens.map((token, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className="border-gray-700">
               <TableCell>
-                <Badge variant={getTokenTypeVariant(token.type)}>
+                <Badge variant={getTokenTypeVariant(token.type)} className={getTokenTypeBadgeClass(token.type)}>
                   {getTokenTypeString(token.type)}
                 </Badge>
               </TableCell>
               <TableCell>
-                <pre className="whitespace-pre-wrap break-all text-sm font-mono">
+                <pre className="whitespace-pre-wrap break-all text-sm font-mono text-gray-200">
                   {token.type === TokenType.WHITESPACE ? JSON.stringify(token.value) : token.value}
                 </pre>
               </TableCell>
